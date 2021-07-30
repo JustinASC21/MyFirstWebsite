@@ -1,0 +1,119 @@
+body {
+    background: white;
+}
+#header {
+    /* where our nav buttons are located */
+    display: flex;
+    width: 100%;
+    height: 90px;
+    margin-left: -15px;
+    background-color: white;
+    border-bottom: black 2px solid;
+}
+#cornerlogo {
+
+    width: 90px;
+    height: 90px;
+}
+/* resize our logo image */
+img {
+    margin-left: 15px;
+    width: 90px;
+    height: 90px;
+}
+#navArea {
+    /* We can seperate the nav buttons from the logo */
+    margin-left: 650px;
+    /* display flex here */
+    display: flex;
+    align-items: center;
+}
+.navButtons {
+    /*  our nav buttons here */
+    width: 100px;
+    height: 40px;
+    /* this is to get the words in the middle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* our border here */
+    border: cyan solid 3px;
+    border-radius: 10px;
+    margin: 3px;
+    font-size: 18px;
+    color:turquoise;
+}
+.navButtons:hover {
+    /* when you hover */
+    opacity: 0.5;
+    background-color:teal;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+#image {
+    /* border: red 5px solid; */
+    height: 400px;
+    margin-left: -5px;
+    width: 100%;
+    display: flex;
+    border-bottom: black solid 2px;
+}
+#BannerImg1 {
+    width: 54%;
+    height: 400px;
+    margin-left: -5px;
+    padding-right: -10px;
+    margin-right: -18px
+}
+#BannerImg2 {
+    width: 645px;
+    height: 400px;
+    margin-left: 5px;
+    margin-right: -15px;
+}
+#profile {
+    /* border: red 5px solid; */
+    padding-top: 5px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+#myImage {
+    border: blue 3px solid;
+    margin-left: 580px;
+    width: 90px;
+    height: 90px;
+    border-radius: 150px;
+}
+#Aboutme {
+    /* border: red 5px solid; */
+    height: 300px;
+}
+#Title {
+    /* border: red 5px solid; */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#School {
+    margin: 10px;
+    /* border: red 5px solid; */
+    width: 200px;
+
+}
+#schoolText {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+#techImg {
+    border-radius: 100px;
+}
+#techImg:hover {
+    opacity: 0.5;
+    border: blue solid 3px;
+}
