@@ -1,6 +1,13 @@
 body {
     background: white;
 }
+#infoPage {
+    display: none;
+}
+#Dusername {
+    display: none;
+    opacity: 0;
+}
 #header {
     /* where our nav buttons are located */
     display: flex;
@@ -22,11 +29,16 @@ img {
     height: 90px;
 }
 #navArea {
+    /* border: red solid 3px; */
+    width: 100%;
     /* We can seperate the nav buttons from the logo */
-    margin-left: 650px;
     /* display flex here */
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+}
+#navContainer {
+    display: flex;
+    /* border:red solid 3px; */
 }
 .navButtons {
     /*  our nav buttons here */
@@ -61,14 +73,14 @@ a {
     border-bottom: grey solid 2px;
 }
 #BannerImg1 {
-    width: 54%;
+    width: 52%;
     height: 400px;
     margin-left: -5px;
     padding-right: -10px;
     margin-right: -18px
 }
 #BannerImg2 {
-    width: 645px;
+    width: 52%;
     height: 400px;
     margin-left: 5px;
     margin-right: -15px;
@@ -82,9 +94,8 @@ a {
 }
 #myImage {
     border: blue 3px solid;
-    margin-left: 580px;
-    width: 90px;
-    height: 90px;
+    /* width: 90px; */
+    /* height: 90px; */
     border-radius: 150px;
 }
 #Aboutme {
@@ -106,27 +117,67 @@ a {
     display: flex;
     justify-content: space-around;
 }
-#School, #gif, #myCulture {
+.myInfo {
     margin: 10px;
     /* border: red 5px solid; */
+    border-radius: 15px;
     width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
-#schoolText, #cultureText {
+#schoolText, #cultureText, #ASCtext {
+    text-align: center;
+    font-weight: bold;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
+    color: rgb(53, 157, 218);
     padding: 5px;
 }
-#techImg, #ecuadorImg{
+.aboutMeimg {
     margin-top: 5px;
     width: 90px;
     height: 90px;
     border-radius: 100px;
 }
-#techImg:hover,#ecuadorImg:hover {
+.aboutMeimg:hover {
     opacity: 0.5;
     border: blue solid 3px;
+}
+#infoPage {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+}
+#infoPage div, #infoPage div a {
+    color: rgb(53, 157, 218);
+    font-size: 24px;
+}
+#buttonContainer {
+    display: flex;
+
+}
+button {
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    height: 50%;
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 15px;
+
+}
+button:hover {
+    opacity: 0.7;
+}
+@media (min-wdith: 60px) {
+    .navButtons {
+        width: 100px;
+    }
+    body {
+        background-color: yellow;
+    }
+    
 }

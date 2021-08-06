@@ -1,64 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Favicon img below -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
     <body>
         <!-- Make our heading div / nav -->
         <div id = "header">
             <div id = "cornerlogo">
                 <!-- holds our corner logo here -->
-                <img src = "images/jLogo.png">
+                <img style = "border-radius: 100px" src = "images/jLogo.png">
             </div>
             <div id = "navArea">
                 <!-- our nav buttons to the top right -->
-                <div class="navButtons">Home</div>
-                <div class="navButtons">Education</div>
-                <!-- When ASC game is clicked... hugos website -->
-                <a target = "_blank" href = "https://justinasc21.github.io/ColorfulBouncingBall/"><div class="navButtons">ASC Game</div></a>
-                <a href="info.html"><div class="navButtons">Info</div></a>
-            </div>
-        </div>
-        <div id = "image">
-            <img id = "BannerImg1" src="images/computerImage.jpg">
-            <!-- Here comes image before profile -->
-            <img id = "BannerImg2" src="images/computer2.jpg">
-        </div>
-        <div id = "profile">
-            <div id = "myImage">
-                <img style = " margin: 0px; border-radius: 80px;"src = "images/jLogo.png">
-            </div>
-        </div>
-        <div id = "Aboutme">
-            <div id = "Title">
-                <h1>About me</h1>
-            </div>
-            <div id = "aboutMeText">
-                <div id = "School">
-                    <a href = "https://bths.edu/"><img  id = "techImg" src = "images/tech.jpg"></a>
-                    <div id = "schoolText">
-                        Hello! This is my high school and I am very proud of my accomplishments here and especially how far I have achieved with my parent's support!
-                    </div>
-                </div>
-                <div id = "gif">
-                    
-                </div>
-                <div id = "myCulture">
-                    <!-- here goes an explanation on my culture -->
-                    <a href = "https://en.wikipedia.org/wiki/Ecuador"><img id = "ecuadorImg" src = "images/ecuador.jpg"></a>
-                    <div id = "cultureText">
-                        My parents are from Ecuador. It is a beautiful country in South America, and from the my parent's stories it sounds like a fun and exhilarating place! I wish for one day to visit Ecuador along with all my familly soon!
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div id = "navContainer">
+                    <a href=""><div id = "home"class="navButtons">Home</div></a>
+                    <div class="navButtons">Education</div>
+                    <!-- When ASC game is clicked... hugos website -->
+                    <a target = "_blank" href = "https://justinasc21.github.io/BasketBall/"><div class="navButtons">ASC Game</div></a>
+                    <a href=""><div id = "Info" class="navButtons">Info</div></a>
 
-        <div>
-            <a href = "https://github.com/JustinASC21">My GitHub!</a>
+                    <div id = "buttonContainer">
+                    <button id = "colorMode">Dark Mode</button>
+                </div>
+                </div>
+            </div>
         </div>
+        <div id="bodyPage">
+            <div id = "image">
+                <img id = "BannerImg1" src="images/computerImage.jpg">
+                <!-- Here comes image before profile -->
+                <img id = "BannerImg2" src="images/computer2.jpg">
+            </div>
+            <div id = "profile">
+                <div>
+                    <img id = "myImage" style = " margin: 0px; border-radius: 80px;"src = "images/profilePic.jpg">
+                </div>
+            </div>
+            <div id = "Aboutme">
+                <div id = "Title">
+                    <h1>About me</h1>
+                </div>
+                <div id = "aboutMeText">
+                    <div class = "myInfo">
+                        <a href = "https://bths.edu/"><img  class = "aboutMeimg" src = "images/tech.jpg"></a>
+                        <div id = "schoolText">
+                            Hello! This is my high school and I am very proud of my accomplishments here and especially how far I have achieved with my parent's support!
+                        </div>
+                    </div>
+                    <div class = "myInfo">
+                        <!-- Here a description of how helpful ASC has been -->
+                        <a href="https://www.allstarcode.org/"><img class = "aboutMeimg" src = "/images/ASCLogo.png"></a>
+                        <div id = "ASCtext">
+                            All Star Code has brought me opportunities and they have helped me along the way! This website right here is my very first and evidence of how great this program is!
+                        </div>
+                    </div>
+                    <div class="myInfo">
+                        <!-- here goes an explanation on my culture -->
+                        <a href = "https://en.wikipedia.org/wiki/Ecuador"><img class = "aboutMeimg" src = "images/ecuador.jpg"></a>
+                        <div id = "cultureText">
+                            My parents are from Ecuador. It is a beautiful country in South America, and from my parent's stories it sounds like a fun and exhilarating place! I wish for one day to visit Ecuador along with all my familly soon!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id = "infoPage">
+            <!-- Right here comes the info page -->
+            <div>
+                <p>Here is my <a href = "https://github.com/JustinASC21">GitHub!</a></p>
+                <p>Here is my <a href= "https://www.linkedin.com/in/justin-lema-b04069219/">LinkedIn!</a></p>
+                <div id = "DiscordButton">
+                    <a href= ""><p>Discord</p></a>
+                </div>
+                    <div id = "Dusername">
+                        JustL#0002
+                    </div>
+            </div>
+
+        </div>
+        
     </body>
 </html>
