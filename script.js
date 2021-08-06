@@ -11,6 +11,7 @@ let aboutMeText = document.querySelector("#aboutMeText");
 let myInfo = document.querySelectorAll(".myInfo");
 let discordButton = document.querySelector("#DiscordButton");
 let usernameText = document.querySelector("#Dusername");
+let hobbies = document.querySelector("#hobby");
 
 // dark mode present or not
 let darkMode = false;

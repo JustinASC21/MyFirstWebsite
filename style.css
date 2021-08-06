@@ -110,7 +110,7 @@ a {
     align-items: center;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
-    border-bottom: grey solid 2px;
+
 }
 #aboutMeText {
     /* border: red solid 3px; */
@@ -171,6 +171,15 @@ button {
 }
 button:hover {
     opacity: 0.7;
+}
+#blurb {
+border-bottom: grey solid 2px;
+display: flex;
+font-size: 18px;
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-weight: bold;
+justify-content: center;
+color: rgb(53, 157, 218);
 }
 @media (min-wdith: 60px) {
     .navButtons {
