@@ -4,6 +4,11 @@ body {
 #infoPage {
     display: none;
 }
+#colorMode {
+    width: 80%;
+    margin-top: 15%;
+    height: 50%
+}
 #Dusername {
     display: none;
     opacity: 0;
@@ -42,15 +47,16 @@ img {
 }
 .navButtons {
     /*  our nav buttons here */
-    width: 100px;
-    height: 40px;
+    width: 15vh;
+    height: 40%;
     /* this is to get the words in the middle */
     display: flex;
     align-items: center;
     justify-content: center;
     /* our border here */
+    margin-top: 15%;
+    margin-right: 25%;
     border-radius: 10px;
-    margin: 5px;
     font-size: 20px;
     color:turquoise;
 }
@@ -60,6 +66,29 @@ img {
     background-color:teal;
     color: white;
     border-bottom: blue solid 3px;
+    animation: navAnimation 1s forwards;
+
+}
+/* fun animation here to show discord username */
+@keyframes enlargeFadein {
+    from {
+        font-size: 5px;
+        opacity: 0;
+    }
+
+    to {
+        font-size: 24px;
+        opacity: 1;
+    }
+}
+@keyframes navAnimation {
+    from {font-size: 20px;
+    width: 15vh;
+height: 40%}
+    to {font-size: 30px;
+    width: 20vh;
+height: 50%}
+    
 }
 a {
     text-decoration: none;
@@ -80,7 +109,7 @@ a {
     margin-right: -18px
 }
 #BannerImg2 {
-    width: 52%;
+    width: 50%;
     height: 400px;
     margin-left: 5px;
     margin-right: -15px;
@@ -173,15 +202,25 @@ button:hover {
     opacity: 0.7;
 }
 #blurb {
-border-bottom: grey solid 2px;
-display: flex;
-font-size: 18px;
-font-family: Georgia, 'Times New Roman', Times, serif;
-font-weight: bold;
-justify-content: center;
-color: rgb(53, 157, 218);
+    border-bottom: grey solid 2px;
+    display: flex;
+    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    justify-content: center;
+    color: rgb(53, 157, 218);
 }
-@media (min-wdith: 60px) {
+@keyframes coolColorChange {
+    0% {color:rgb(53, 157, 218)}
+    15% {color: blue}
+    30% {color: purple}
+    45% {color: red}
+    60% {color: orange}
+    75% {color: yellowgreen}
+    90% { color: teal}
+    100% {color: rgb(53, 157, 218)}
+}
+@media (max-wdith: 1000px) {
     .navButtons {
         width: 100px;
     }
@@ -189,4 +228,16 @@ color: rgb(53, 157, 218);
         background-color: yellow;
     }
     
+}
+#projectPage {
+    flex-wrap: wrap;
+    margin: 2%;
+}
+#projectPage div:hover {
+    /* animation: focusProject 2s forwards; */
+    /* border: lightgrey solid 2px; */
+    opacity: 0.7;
+}
+#aboutMeText span:hover {
+    animation: coolColorChange 4s forwards infinite;
 }

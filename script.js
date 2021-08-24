@@ -11,7 +11,9 @@ let aboutMeText = document.querySelector("#aboutMeText");
 let myInfo = document.querySelectorAll(".myInfo");
 let discordButton = document.querySelector("#DiscordButton");
 let usernameText = document.querySelector("#Dusername");
-let hobbies = document.querySelector("#hobby");
+let project = document.querySelector("#project");
+let projectPage = document.querySelector("#projectPage");
+
 
 // dark mode present or not
 let darkMode = false;
@@ -26,6 +28,7 @@ info.onclick = function(event) {
     // when the info button has been clicked display information on the same page
     bodyPage.style.display = "none";
     infoPage.style.display = "block";
+    projectPage.innerHTML = "";
 
 }
 home.onclick = function(event) {
@@ -34,6 +37,7 @@ home.onclick = function(event) {
     // when home page is clicked display body
     infoPage.style.display = "none";
     bodyPage.style.display = "block";
+    projectPage.innerHTML = "";
 }
 // click button to change to dark mode?
 colorButton.onclick = function(event) {
@@ -43,7 +47,7 @@ colorButton.onclick = function(event) {
         htmlBody.style.backgroundColor = "white";
         webHeader.style.backgroundColor = "white";
         aboutMeTitle.style.color = "black";
-        colorButton.innerHTML = "Dark Mode";
+        colorMode.src = "images/moon.png";
         darkMode = !darkMode;
         for (let i = 0; i < 4; i ++){
             myInfo[i].style.backgroundColor = "white";
@@ -56,7 +60,7 @@ colorButton.onclick = function(event) {
         for (let i = 0; i < 3; i ++){
             myInfo[i].style.backgroundColor = "black";
         }
-        colorButton.innerHTML = "Light Mode";
+        colorMode.src = "images/sun.png";
         darkMode = !darkMode;
 
     }
@@ -94,16 +98,19 @@ discordButton.onclick = function(event) {
     
     if (Dusername) {
     // when discord button clicked display username
-    usernameText.style.display = "none"
     for (let i = 1; i >= 0; i-= 0.05) {
-        usernameText.style.opacity = i;
+        // add a cool fade in animation
+        
+        usernameText.style.display = "none"
+    
     }
     Dusername = !Dusername;
     }
     else {
         usernameText.style.display = "block";
         for (let i = 0; i <= 1; i += 0.1) {
-            usernameText.style.opacity = i;
+            usernameText.style.animation = "enlargeFadein 1.5s forwards";
+            ;
             console.log(i);
 
         }
@@ -111,3 +118,74 @@ discordButton.onclick = function(event) {
         
     }
 }
+project.onclick = function(event) {
+    event.preventDefault();
+
+    
+    bodyPage.style.display = "none";
+    infoPage.style.display = "none";
+    projectPage.style.display = "block";
+    projectPage.style.display = "flex";
+    
+    // create new elements here - thinking on making nice tiles with information about my projects
+    function createCards() {
+        url = "https://api.github.com/users/justinASC21/repos"
+        // fetch api response to json here
+        fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(myJson) {
+                console.log(myJson)
+
+                for (let i = 0; i < myJson.length; i ++) {
+
+                    if (myJson[i].fork == true) {
+                        console.log("Fork true")
+                    }
+                    else {
+
+                        // create our elements here
+                        let cardDiv = document.createElement("div");
+                        let cardImg = document.createElement("img");
+                        let cardDescription = document.createElement("p");
+                        let cardTitle = document.createElement("h3");
+                
+                        // style our elements / add items to it
+                        cardImg.src = "images/Jlogo.png";
+                        cardDiv.style.width = "10%";
+                        cardDiv.style.border = "red solid 2px";
+                        cardDiv.style.margin = "10px";
+                        cardDiv.appendChild(cardImg);
+                        // create div with a class
+                        cardDiv.setAttribute("class","projectDivs");
+                        let description;
+                        if (myJson[i].description == null) {
+                            description = "Whoops description was not able to load..."
+                        }
+                        else {
+                            description = myJson[i].description
+                        }
+                        cardTitle.innerHTML = myJson[i].name;
+                        // cardTitle.style.
+                        cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[i].language;
+                        cardDiv.appendChild(cardTitle);
+                        cardDiv.appendChild(cardDescription);
+                
+                        projectPage.appendChild(cardDiv);
+                        // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
+                        // animations details really helpful here: https://www.w3schools.com/css/css3_animations.asp
+                        
+                        // cardDiv.style.animation = "slidingProjects 3s forwards";
+                    }
+
+                }
+
+            })
+
+
+    }
+        createCards();
+
+}
+// add in sliding effect for now use listing projects
