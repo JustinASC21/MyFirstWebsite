@@ -121,7 +121,8 @@ discordButton.onclick = function(event) {
 project.onclick = function(event) {
     event.preventDefault();
 
-    
+    projectPage.innerHTML = "";
+        
     bodyPage.style.display = "none";
     infoPage.style.display = "none";
     projectPage.style.display = "block";

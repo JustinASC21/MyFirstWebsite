@@ -57,15 +57,15 @@ img {
     margin-top: 15%;
     margin-right: 25%;
     border-radius: 10px;
+    font-weight: bold;
     font-size: 20px;
     color:turquoise;
 }
 .navButtons:hover {
     /* when you hover */
-    opacity: 0.5;
-    background-color:teal;
-    color: white;
-    border-bottom: blue solid 3px;
+    background-image: url("images/matrix.gif");
+color: white;
+    height: 40%;
     animation: navAnimation 1s forwards;
 
 }
@@ -82,11 +82,11 @@ img {
     }
 }
 @keyframes navAnimation {
-    from {font-size: 20px;
-    width: 15vh;
+    from {font-size: 18px;
+    /* width: 15vh; */
 height: 40%}
-    to {font-size: 30px;
-    width: 20vh;
+    to {font-size: 22px;
+    /* width: 20vh; */
 height: 50%}
     
 }
