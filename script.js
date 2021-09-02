@@ -14,6 +14,8 @@ let usernameText = document.querySelector("#Dusername");
 let project = document.querySelector("#project");
 let projectPage = document.querySelector("#projectPage");
 
+var projectDisplay = 0; // number representing the project being displayed
+var projectTotalRepos;
 
 // dark mode present or not
 let darkMode = false;
@@ -75,7 +77,7 @@ aboutMeText.onmouseover = function(event) {
             event.preventDefault();
 
             myInfo[i].style.borderTop = "cyan solid 4px";
-            myInfo[i].style.backgroundColor = "#c6e1f5";
+            myInfo[i].style.backgroundImage = "linear-gradient(cyan,white,cyan)";
             // myInfo[i].style.opacity = 0.5;
                 }    
         myInfo[i].onmouseout = function(event) {
@@ -84,10 +86,10 @@ aboutMeText.onmouseover = function(event) {
             myInfo[i].style.border = "none";
             if (darkMode) {
 
-                myInfo[i].style.backgroundColor = "black";
+                myInfo[i].style.backgroundImage = "none";
             }
             else {
-                myInfo[i].style.backgroundColor = "white";
+                myInfo[i].style.backgroundImage = "none";
             }
         }
     }
@@ -118,75 +120,179 @@ discordButton.onclick = function(event) {
         
     }
 }
+function createCardsToRight(projectNum) {
+    let projectsDisplayDiv = document.getElementById("displayProjects");
+    projectsDisplayDiv.innerHTML = ""
+    console.log(projectNum)
+    url = "https://api.github.com/users/justinASC21/repos"
+    // fetch api response to json here
+    fetch(url)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(myJson) {
+        console.log(myJson)
+        projectTotalRepos = myJson.length - 1;
+        
+        if (projectNum > myJson.length) {
+            console.log("List too short")
+            projectDisplay = 0;
+            createCardsToRight(projectDisplay)
+        }
+        else {
+            
+            // create our elements here
+            let cardDiv = document.createElement("div");
+            let cardImg = document.createElement("img");
+            let cardDescription = document.createElement("p");
+            let cardTitle = document.createElement("h3");
+            
+            // style our elements / add items to it
+            cardImg.src = "images/Jlogo.png";
+            cardDiv.style.border = "red solid 2px";
+            cardDiv.style.padding = "10px";
+            cardDiv.style.margin = "10px";
+            cardDiv.appendChild(cardImg);
+            // create div with a class
+            cardDiv.setAttribute("id","projectDivs");
+            let description;
+            if (myJson[projectNum].fork == true) {
+                description = "This project has been forked from All Star Code, and been developed hands on by me throught helpful lessons and collaboration!";
+            }
+            else if (myJson[projectNum].description == null) {
+                description = "Whoops description was not able to load..."
+            }
+            else {
+                description = myJson[projectNum].description
+            }
+            cardTitle.innerHTML = myJson[projectNum].name;
+            // cardTitle.style.
+            cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[projectNum].language;
+            cardDiv.appendChild(cardTitle);
+            cardDiv.appendChild(cardDescription);
+            
+            
+            projectsDisplayDiv.appendChild(cardDiv);
+            // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
+            // animations details really helpful here: https://www.w3schools.com/css/css3_animations.asp
+            
+            // cardDiv.style.animation = "slidingProjects 3s forwards";
+        }
+    })
+}
+function createCardsToLeft(projectNum) {
+    console.log(projectNum)
+
+    url = "https://api.github.com/users/justinASC21/repos"
+    // fetch api response to json here
+    fetch(url)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(myJson) {
+        
+        projectTotalRepos = myJson.length - 1;
+        let projectsDisplayDiv = document.getElementById("displayProjects");
+
+                if (projectNum < 0) {
+                    console.log("List too short")
+                    projectDisplay = projectTotalRepos - 1;
+                    createCardsToLeft(projectDisplay)
+                }
+                else {
+
+                    // create our elements here
+                    let cardDiv = document.createElement("div");
+                    let cardImg = document.createElement("img");
+                    let cardDescription = document.createElement("p");
+                    let cardTitle = document.createElement("h3");
+            
+                    // style our elements / add items to it
+                    cardImg.src = "images/Jlogo.png";
+                    cardDiv.style.border = "red solid 2px";
+                    cardDiv.style.padding = "10px";
+                    cardDiv.style.margin = "10px";
+                    cardDiv.appendChild(cardImg);
+                    // create div with a class
+                    cardDiv.setAttribute("id","projectDivs");
+                    let description;
+                    if (myJson[projectNum].fork == true) {
+                        description = "This project has been forked from All Star Code, and been developed hands on by me throught helpful lessons and collaboration!";
+                    }
+                    else if (myJson[projectNum].description == null) {
+                        description = "Whoops description was not able to load..."
+                    }
+                    else {
+                        description = myJson[projectNum].description
+                    }
+                    cardTitle.innerHTML = myJson[projectNum].name;
+                    // cardTitle.style.
+                    cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[projectNum].language;
+                    cardDiv.appendChild(cardTitle);
+                    cardDiv.appendChild(cardDescription);
+
+                    //  // below here create button to navigate projects
+                    // let newButton = document.createElement("button");
+                    // newButton.setAttribute("id","lastProject");
+                    // newButton.setAttribute("onclick","nextProject(add = false)")
+                    // newButton.innerHTML = "Last"
+                    // projectsDisplayDiv.appendChild(newButton)
+            
+                    projectsDisplayDiv.appendChild(cardDiv);
+                    // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
+                    // animations details really helpful here: https://www.w3schools.com/css/css3_animations.asp
+                    
+                    // cardDiv.style.animation = "slidingProjects 3s forwards";
+                }
+            })
+}
 project.onclick = function(event) {
     event.preventDefault();
 
-    projectPage.innerHTML = "";
-        
+    let projectsDisplayDiv = document.getElementById("displayProjects");
+    projectsDisplayDiv.innerHTML = "";
+
     bodyPage.style.display = "none";
     infoPage.style.display = "none";
     projectPage.style.display = "block";
-    projectPage.style.display = "flex";
-    
-    // create new elements here - thinking on making nice tiles with information about my projects
-    function createCards() {
-        url = "https://api.github.com/users/justinASC21/repos"
-        // fetch api response to json here
-        fetch(url)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(myJson) {
-                console.log(myJson)
+    createCardsToRight(projectDisplay);
 
-                for (let i = 0; i < myJson.length; i ++) {
+    let projectCounter = document.getElementById("projectCounter");
+    url = "https://api.github.com/users/justinASC21/repos"
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(json) {
+            projectTotalRepos = json.length - 1;
+            projectCounter.innerHTML = "Project # 0 / " + projectTotalRepos;
+        })
+}
 
-                    if (myJson[i].fork == true) {
-                        console.log("Fork true")
-                    }
-                    else {
+function nextProject(add = true) {
+    let projectsDisplayDiv = document.getElementById("displayProjects");
+    let projectCounter = document.getElementById("projectCounter");
 
-                        // create our elements here
-                        let cardDiv = document.createElement("div");
-                        let cardImg = document.createElement("img");
-                        let cardDescription = document.createElement("p");
-                        let cardTitle = document.createElement("h3");
-                
-                        // style our elements / add items to it
-                        cardImg.src = "images/Jlogo.png";
-                        cardDiv.style.width = "10%";
-                        cardDiv.style.border = "red solid 2px";
-                        cardDiv.style.margin = "10px";
-                        cardDiv.appendChild(cardImg);
-                        // create div with a class
-                        cardDiv.setAttribute("class","projectDivs");
-                        let description;
-                        if (myJson[i].description == null) {
-                            description = "Whoops description was not able to load..."
-                        }
-                        else {
-                            description = myJson[i].description
-                        }
-                        cardTitle.innerHTML = myJson[i].name;
-                        // cardTitle.style.
-                        cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[i].language;
-                        cardDiv.appendChild(cardTitle);
-                        cardDiv.appendChild(cardDescription);
-                
-                        projectPage.appendChild(cardDiv);
-                        // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
-                        // animations details really helpful here: https://www.w3schools.com/css/css3_animations.asp
-                        
-                        // cardDiv.style.animation = "slidingProjects 3s forwards";
-                    }
-
-                }
-
-            })
-
-
+    console.log("clicked!")
+    if (add) {
+        projectDisplay += 1;
+        if (projectDisplay == projectTotalRepos + 1) {
+            projectDisplay = 0
+        };
+        projectsDisplayDiv.innerHTML = ""
+        createCardsToRight(projectDisplay);
+        projectCounter.innerHTML = "Project # " + projectDisplay + " / " + projectTotalRepos 
     }
-        createCards();
+    else {
+        projectDisplay -= 1;
+        if (projectDisplay == -1) {
+            projectDisplay = projectTotalRepos;
+        }
+        projectsDisplayDiv.innerHTML = "";
+        createCardsToLeft(projectDisplay);
+        projectCounter.innerHTML = "Project # " + projectDisplay + " / " + projectTotalRepos 
+    }
 
 }
+
 // add in sliding effect for now use listing projects
