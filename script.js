@@ -16,12 +16,16 @@ let projectPage = document.querySelector("#projectPage");
 
 var projectDisplay = 0; // number representing the project being displayed
 var projectTotalRepos;
+var githubJSON;
 
 // dark mode present or not
 let darkMode = false;
 // username present or not
 let Dusername = false;
 
+// function restoreProjectPage() {
+//     // this function will restore the project page to be 
+// }
 //event handler
 info.onclick = function(event) {
     // prevent refresh
@@ -29,8 +33,9 @@ info.onclick = function(event) {
 
     // when the info button has been clicked display information on the same page
     bodyPage.style.display = "none";
+    // clear the project page
+    projectPage.style.display = "none";
     infoPage.style.display = "block";
-    projectPage.innerHTML = "";
 
 }
 home.onclick = function(event) {
@@ -38,8 +43,8 @@ home.onclick = function(event) {
 
     // when home page is clicked display body
     infoPage.style.display = "none";
+    projectPage.style.display = "none";
     bodyPage.style.display = "block";
-    projectPage.innerHTML = "";
 }
 // click button to change to dark mode?
 colorButton.onclick = function(event) {
@@ -123,18 +128,9 @@ discordButton.onclick = function(event) {
 function createCardsToRight(projectNum) {
     let projectsDisplayDiv = document.getElementById("displayProjects");
     projectsDisplayDiv.innerHTML = ""
-    console.log(projectNum)
-    url = "https://api.github.com/users/justinASC21/repos"
-    // fetch api response to json here
-    fetch(url)
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(myJson) {
-        console.log(myJson)
-        projectTotalRepos = myJson.length - 1;
+        projectTotalRepos = githubJSON.length - 1;
         
-        if (projectNum > myJson.length) {
+        if (projectNum > githubJSON.length) {
             console.log("List too short")
             projectDisplay = 0;
             createCardsToRight(projectDisplay)
@@ -143,34 +139,36 @@ function createCardsToRight(projectNum) {
             
             // create our elements here
             let cardDiv = document.createElement("div");
+            let cardHref = document.createElement("a");
             let cardImg = document.createElement("img");
             let cardDescription = document.createElement("p");
             let cardTitle = document.createElement("h3");
             
-            // style our elements / add items to it
-            cardImg.src = "images/Jlogo.png";
-            cardDiv.style.border = "red solid 2px";
-            cardDiv.style.padding = "10px";
-            cardDiv.style.margin = "10px";
-            cardDiv.appendChild(cardImg);
-            // create div with a class
+             // style our elements / add items to it
+             cardImg.src = "images/githubcat.png";
+             cardHref.href = githubJSON[projectNum].html_url;
+             cardHref.appendChild(cardImg)
+
+             cardDiv.style.padding = "10px";
+             cardDiv.style.margin = "10px";
+             cardDiv.appendChild(cardHref);
+             // create div with a class
             cardDiv.setAttribute("id","projectDivs");
             let description;
-            if (myJson[projectNum].fork == true) {
+            if (githubJSON[projectNum].fork == true) {
                 description = "This project has been forked from All Star Code, and been developed hands on by me throught helpful lessons and collaboration!";
             }
-            else if (myJson[projectNum].description == null) {
+            else if (githubJSON[projectNum].description == null) {
                 description = "Whoops description was not able to load..."
             }
             else {
-                description = myJson[projectNum].description
+                description = githubJSON[projectNum].description
             }
-            cardTitle.innerHTML = myJson[projectNum].name;
+            cardTitle.innerHTML = githubJSON[projectNum].name;
             // cardTitle.style.
-            cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[projectNum].language;
+            cardDescription.innerHTML =  description + "<br><br> Languages Used: " + githubJSON[projectNum].language;
             cardDiv.appendChild(cardTitle);
             cardDiv.appendChild(cardDescription);
-            
             
             projectsDisplayDiv.appendChild(cardDiv);
             // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
@@ -178,20 +176,10 @@ function createCardsToRight(projectNum) {
             
             // cardDiv.style.animation = "slidingProjects 3s forwards";
         }
-    })
 }
 function createCardsToLeft(projectNum) {
-    console.log(projectNum)
 
-    url = "https://api.github.com/users/justinASC21/repos"
-    // fetch api response to json here
-    fetch(url)
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(myJson) {
-        
-        projectTotalRepos = myJson.length - 1;
+        projectTotalRepos = githubJSON.length - 1;
         let projectsDisplayDiv = document.getElementById("displayProjects");
 
                 if (projectNum < 0) {
@@ -203,40 +191,36 @@ function createCardsToLeft(projectNum) {
 
                     // create our elements here
                     let cardDiv = document.createElement("div");
+                    let cardHref = document.createElement("a");
                     let cardImg = document.createElement("img");
                     let cardDescription = document.createElement("p");
                     let cardTitle = document.createElement("h3");
             
                     // style our elements / add items to it
-                    cardImg.src = "images/Jlogo.png";
-                    cardDiv.style.border = "red solid 2px";
+                    cardImg.src = "images/githubcat.png";
+                    cardHref.href = githubJSON[projectNum].html_url;
+                    cardHref.appendChild(cardImg)
+
                     cardDiv.style.padding = "10px";
                     cardDiv.style.margin = "10px";
-                    cardDiv.appendChild(cardImg);
+                    cardDiv.appendChild(cardHref);
                     // create div with a class
                     cardDiv.setAttribute("id","projectDivs");
                     let description;
-                    if (myJson[projectNum].fork == true) {
+                    if (githubJSON[projectNum].fork == true) {
                         description = "This project has been forked from All Star Code, and been developed hands on by me throught helpful lessons and collaboration!";
                     }
-                    else if (myJson[projectNum].description == null) {
+                    else if (githubJSON[projectNum].description == null) {
                         description = "Whoops description was not able to load..."
                     }
                     else {
-                        description = myJson[projectNum].description
+                        description = githubJSON[projectNum].description
                     }
-                    cardTitle.innerHTML = myJson[projectNum].name;
+                    cardTitle.innerHTML = githubJSON[projectNum].name;
                     // cardTitle.style.
-                    cardDescription.innerHTML =  description + "<br><br> Languages Used: " + myJson[projectNum].language;
+                    cardDescription.innerHTML =  description + "<br><br> Languages Used: " + githubJSON[projectNum].language;
                     cardDiv.appendChild(cardTitle);
                     cardDiv.appendChild(cardDescription);
-
-                    //  // below here create button to navigate projects
-                    // let newButton = document.createElement("button");
-                    // newButton.setAttribute("id","lastProject");
-                    // newButton.setAttribute("onclick","nextProject(add = false)")
-                    // newButton.innerHTML = "Last"
-                    // projectsDisplayDiv.appendChild(newButton)
             
                     projectsDisplayDiv.appendChild(cardDiv);
                     // cardDiv.style.tra/sform = "translateY(50px) translateX(250%)"
@@ -244,29 +228,31 @@ function createCardsToLeft(projectNum) {
                     
                     // cardDiv.style.animation = "slidingProjects 3s forwards";
                 }
-            })
 }
 project.onclick = function(event) {
     event.preventDefault();
-
+    
     let projectsDisplayDiv = document.getElementById("displayProjects");
     projectsDisplayDiv.innerHTML = "";
-
+    
     bodyPage.style.display = "none";
     infoPage.style.display = "none";
     projectPage.style.display = "block";
-    createCardsToRight(projectDisplay);
-
+    
     let projectCounter = document.getElementById("projectCounter");
     url = "https://api.github.com/users/justinASC21/repos"
     fetch(url)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(json) {
-            projectTotalRepos = json.length - 1;
-            projectCounter.innerHTML = "Project # 0 / " + projectTotalRepos;
-        })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(json) {
+        githubJSON = json;
+        createCardsToRight(projectDisplay);
+
+        projectTotalRepos = json.length - 1;
+        // projectDisplay represents the number project being shown atm
+        projectCounter.innerHTML = "Project # " + projectDisplay + " / " + projectTotalRepos;
+    })
 }
 
 function nextProject(add = true) {

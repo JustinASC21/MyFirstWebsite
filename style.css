@@ -229,10 +229,21 @@ button:hover {
     flex-wrap: wrap;
     margin: 2%;
 }
-#projectPage div:hover {
+#projectPage #displayProjects div:hover {
     /* border: lightgrey solid 2px; */
-    opacity: 0.7;
+    color: rgb(53, 157, 218);
+}
+#projectPage #displayProjects div{
+    background-color: rgb(40,40,60);
+    border:rgb(53, 157, 218) solid 2px;
     color: white;
+    text-align: center;
+}
+#projectCounter {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 28px;
+    color: rgb(53, 157, 218)
 }
 #aboutMeText span:hover {
     animation: coolColorChange 4s forwards infinite;
